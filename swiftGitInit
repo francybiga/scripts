@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+require 'open-uri'
+
+unless ARGV.length == 1
+    puts "Usage: swiftGitInit.rb repoDir"
+    exit
+end
+
+repo_dir  = ARGV[0]
+Dir.chdir(repo_dir)
+puts "Moved to #{repo_dir}"
+`git init`
+puts "Git initialized"
+
+gitignore_uri = "https://raw.githubusercontent.com/github/gitignore/master/Swift.gitignore"
+gitignore_filename = ".gitignore"
+File.new(gitignore_filename, "w")
+gitignore_filename << open(gitignore_uri).read
+puts "Gitignore file created"
+`git add .gitignore`
+`git commit -m "Added gitignore"`
+puts "Gitignore committed"
+`git add .`
+`git commit -m "First commit"` 
+puts "First commit"
+puts "Done"
+
+
+
+
