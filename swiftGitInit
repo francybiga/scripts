@@ -13,11 +13,11 @@ puts "Moved to #{repo_dir}"
 puts "Git initialized"
 
 gitignore_uri = "https://raw.githubusercontent.com/github/gitignore/master/Swift.gitignore"
-gitignore_filename = ".gitignore"
-File.new(gitignore_filename, "w")
-gitignore_filename << open(gitignore_uri).read
+gitignore_file = File.new( ".gitignore", "w+")
+bytes = gitignore_file.write(open(gitignore_uri).read)
+gitignore_file.close
 puts "Gitignore file created"
-`git add .gitignore`
+`git add .gitignore -v`
 `git commit -m "Added gitignore"`
 puts "Gitignore committed"
 `git add .`
