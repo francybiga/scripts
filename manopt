@@ -1,0 +1,11 @@
+#!/bin/zsh
+#This simple script search in a manpage for a specific option and displays it.
+#Usage:
+#manopt command-to-search option-to-search
+#es. manopt sort r
+
+regex="^\s+\-$2"
+#Manpages are stored in nroff format, which contains formatting information such as BS special characters. We use col to get rid of backspace special characters 
+#Note that we are using GNU Grep (gg)to allow Pearl regex with -P
+man $1 | col -b |ggrep -P $regex -A3 
+
