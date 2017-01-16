@@ -1,0 +1,7 @@
+#!/bin/zsh
+#This simple script split a single line json in multiple lines, one for each '{' 
+#Usage:
+#splitJsonInLines filetosplit
+#es. splitJsonInLines file.json 
+
+sed $'s/{/\\\n{/g' $1
