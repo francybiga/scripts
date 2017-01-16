@@ -1,0 +1,17 @@
+#!/bin/bash
+#This script downloads an mp3 track of a video, given its url
+#It's possible to specify the start and an end position to obtain only a part of the audio file.
+#NOTE: if you specify an offset and want to specify also the duration, you should subtract the offset from the end position of the original file. 
+
+function show_usage {
+echo "Usage: videoToMp3 video_url mp3_name [start_position] [end_position]"
+exit 1
+}
+
+if [ $# -lt 2 ]; then
+    show_usage
+else 
+    #We are passing the "start_position" to the output file to avoid the need to subtract it to the end_position value In this way you can use the end_position of the original value, the start_position is discarded only on the output file.
+    #Note that ${variable:-value} is a "parameter substitution" which evaluates to "value" if variable is unset or null.
+   ffmpeg -t "${4:-0}" -i "$1" -vn -ar 44100 -ac 2 -f mp3 -ss "${3:-0}" "$2"
+fi
