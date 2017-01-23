@@ -1,0 +1,5 @@
+#!/bin/sh
+#Generates a tag file for Python source code; note the 'python-kinds' option which prevent from indexing the import statementes and skips variables
+echo '\n -- Generating ctags file for python source code--\n'
+ctags -R --fields=+l --languages=python --python-kinds=-iv .
+
