@@ -1,0 +1,3 @@
+#!/bin/sh
+WEEK_NUM=$(date +%V)
+echo "Current week of the year is: $WEEK_NUM" 
