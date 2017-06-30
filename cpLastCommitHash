@@ -1,0 +1,2 @@
+#!/bin/zsh
+git log --oneline | head -1 | cut -d ' ' -f1 | pbcopy
